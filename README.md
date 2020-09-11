@@ -1,20 +1,5 @@
 #### 这个项目尝试抓取廖雪峰博客的教程输出为PDF，官方网址在https://www.liaoxuefeng.com/
 
-
-### 版本0.1.0
-
-一、首先这是一个使用同步规则的爬虫
-
-二、使用的库如下：beautifulsoup4，requests，pdfkit，您可以`pip install[package]`
-
-三、使用wkhtmltopdf将已爬取的html转换为pdf
-
-四、我将脚本和CSS样式保存在html文件中，这使它看起来像是在web上看到的。
-
-五、不使用分布式和ip代理池
-
-六、我保留了已爬取的html和pdf，它们都在zip文件中。
-
 #### 更新日期：2019/12/17
 
 版本0.2.0
