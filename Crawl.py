@@ -65,7 +65,7 @@ class Crawl:
             for sheet in stylesheet:
                 if sheet['href'] not in self.css:
                     res = requests.get('https://static.liaoxuefeng.com' + sheet['href'], sheet['href'])
-                    if sheet['href'] == '/static/css/main.css?v=1.0-b1b83dc-2019-05-25T01:51:58Z':
+                    if sheet['href'] == '/static/css/main.css?v=1.0-cce394b-2020-06-25-01-06':  # special case
                         sheet['href'] = '/static/css/main.css'
                     with open('.' + sheet['href'], 'w', encoding='utf-8') as f:
                         f.write(res.text)
@@ -73,9 +73,9 @@ class Crawl:
                     self.css.append(sheet)
 
         # external js
-        javascripts = head.findAll('script', attrs={'src': True, 'async': False, 'charset': False})
-        if javascripts is not None:
-            for javascript in javascripts:
+        manuscripts = head.findAll('script', attrs={'src': True, 'async': False, 'charset': False})
+        if manuscripts is not None:
+            for javascript in manuscripts:
                 if javascript['src'] not in self.css:
                     res = requests.get('https://static.liaoxuefeng.com' + javascript['src'], javascript['src'])
                     if not os.path.exists(os.path.dirname('.' + javascript['src'])):
@@ -201,14 +201,15 @@ class Crawl:
         with open('js.html', 'r', encoding='utf-8') as f:
             js = f.read()
 
+
         html = self.templates.format(content=content, css=css, js=js)
         with open('templates.html', 'w', encoding='utf-8') as f:
             f.write(html)
 
 
 if __name__ == '__main__':
-    # crawl = Crawl("https://www.liaoxuefeng.com/wiki/1016959663602400/1019418790329088", 'liaoxuefeng_python3.pdf')
-    # crawl = Crawl("https://www.liaoxuefeng.com/wiki/1252599548343744", 'liaoxuefeng_java12.pdf')
-    # crawl = Crawl('https://www.liaoxuefeng.com/wiki/1022910821149312', 'liaoxuefeng_javascript.pdf')
-    crawl = Crawl('https://www.liaoxuefeng.com/wiki/1177760294764384', 'liaoxuefeng_sql.pdf')
-    # crawl=Crawl('https://www.liaoxuefeng.com/wiki/896043488029600','liaoxuefeng_git.pdf')
+    #crawl = Crawl("https://www.liaoxuefeng.com/wiki/1016959663602400/1019418790329088", 'python3.pdf')
+   # crawl = Crawl("https://www.liaoxuefeng.com/wiki/1252599548343744", 'java14.pdf')
+    #crawl = Crawl('https://www.liaoxuefeng.com/wiki/1022910821149312', 'javascript.pdf')
+    #crawl = Crawl('https://www.liaoxuefeng.com/wiki/1177760294764384', 'sql.pdf')
+     crawl=Crawl('https://www.liaoxuefeng.com/wiki/896043488029600','git.pdf')
